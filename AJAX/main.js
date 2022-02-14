@@ -16,49 +16,63 @@ lomake.addEventListener('submit', function (evt) {
         });
 });
 
-function sarjojenEsitys(s) {
-    console.log(s);
+function sarjojenEsitys(sarjat) {
 
-    for (let i = 0; i <= s.length; i++) {
-        let sarja = s[i];
+    console.log(sarjat);
 
-        const main = document.querySelector('main');
+    const main = document.querySelector('main');
+
+    while (main.firstChild) {
+        main.removeChild(main.firstChild)
+    }
+
+    if (sarjat.length < 1) {
+        const error = document.createElement('p');
+        error.className = 'error';
+        error.textContent = 'Tällä hakusanalla ei löydy sarjoja! :('
+        main.appendChild(error);
+    }
+
+    for (const sarja of sarjat) {
+
+        if (!sarja) continue
 
         const article = document.createElement('article');
         article.className = 'article';
         main.appendChild(article);
 
         const nimi = document.createElement('h2');
+        nimi.className = 'nimi'
         nimi.textContent = sarja.show.name;
         article.appendChild(nimi);
 
         if (sarja.show.image != null) {
             const image = document.createElement('img');
             image.src = sarja.show.image.medium;
+            image.alt = sarja.show.name;
             article.appendChild(image);
         } else {
             const image = document.createElement('img');
             image.src = 'imgError.jpg';
+            image.alt = 'error';
             article.appendChild(image);
         }
 
         const genre = document.createElement('p');
+        genre.className = 'genre';
         genre.textContent = sarja.show.genres.join(', ')
         article.appendChild(genre);
 
         const link = document.createElement('a');
+        link.className = 'Link'
         link.href = sarja.show.url;
-        link.textContent = 'linkki';
+        link.textContent = 'Link';
         article.appendChild(link);
 
         const summary = document.createElement('div');
+        summary.className = 'summary';
         summary.innerHTML = sarja.show.summary;
         article.appendChild(summary);
 
     }
-}
-
-function poistaArticlet() {
-    const poista = document.getElementsByClassName('article');
-    poista.remove();
 }

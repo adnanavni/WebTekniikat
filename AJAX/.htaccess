@@ -1,4 +1,0 @@
-AuthUserFile /home2-2/a/adnanav/.htpasswd
-AuthType Basic 
-AuthName "This page is password protected. Password required." 
-Require valid-user
