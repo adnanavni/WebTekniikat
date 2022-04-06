@@ -1,2 +1,2 @@
 # WebTekniikat
-Metropolia Web-tekniikat ja digitaalinen media kurssi
+Metropolia Web-tekniikat ja digitaalinen media kurssin javascript tehtävät
